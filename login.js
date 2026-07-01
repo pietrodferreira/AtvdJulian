@@ -11,25 +11,27 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Validação básica
     if (!emailInput.value.trim()) {
-      alert('Por favor, digite seu email ou usuário');
+      setError(emailInput, 'Por favor, digite seu email ou usuário');
       emailInput.focus();
       return;
     }
     
     if (!passwordInput.value.trim()) {
-      alert('Por favor, digite sua senha');
+      setError(passwordInput, 'Por favor, digite sua senha');
       passwordInput.focus();
       return;
     }
     
-    // Validar formato de email
-    if (emailInput.type === 'email' && !isValidEmail(emailInput.value)) {
-      alert('Por favor, digite um email válido');
+    // Validar formato de email (se contiver @)
+    if (emailInput.value.includes('@') && !isValidEmail(emailInput.value)) {
+      setError(emailInput, 'Por favor, digite um email válido');
       emailInput.focus();
       return;
     }
     
     // Se passou na validação
+    clearError(emailInput);
+    clearError(passwordInput);
     console.log('Email/Usuário:', emailInput.value);
     console.log('Senha:', passwordInput.value);
     
@@ -40,17 +42,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // fazerLogin(emailInput.value, passwordInput.value);
   });
   
-  // Validação em tempo real
+  // Validação em tempo real para email
+  emailInput.addEventListener('input', function() {
+    clearError(this);
+  });
+  
   emailInput.addEventListener('blur', function() {
-    if (this.value && this.type === 'email' && !isValidEmail(this.value)) {
-      this.style.borderColor = '#ff6b6b';
-    } else {
-      this.style.borderColor = 'transparent';
+    if (this.value && this.value.includes('@') && !isValidEmail(this.value)) {
+      setError(this, 'Email inválido');
     }
   });
   
-  passwordInput.addEventListener('focus', function() {
-    this.style.borderColor = 'transparent';
+  // Validação em tempo real para senha
+  passwordInput.addEventListener('input', function() {
+    clearError(this);
   });
 });
 
@@ -58,6 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
 function isValidEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
+}
+
+// Função para mostrar erro
+function setError(input, message) {
+  input.classList.add('input-error');
+  input.title = message;
+}
+
+// Função para limpar erro
+function clearError(input) {
+  input.classList.remove('input-error');
+  input.title = '';
 }
 
 // Exemplo de função para fazer login (comentada)

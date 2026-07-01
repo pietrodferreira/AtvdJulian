@@ -434,6 +434,17 @@ main {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
+.form-group input.input-error {
+  background: rgba(255, 107, 107, 0.3);
+  border: 2px solid #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+.form-group input.input-error:focus {
+  background: rgba(255, 107, 107, 0.4);
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3);
+}
+
 .remember-forgot {
   display: flex;
   justify-content: space-between;
