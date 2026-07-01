@@ -4,6 +4,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const loginForm = document.getElementById('loginForm');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
+  const togglePasswordBtn = document.getElementById('togglePassword');
+  
+  // Toggle de visibilidade de senha
+  if (togglePasswordBtn) {
+    togglePasswordBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      
+      // Trocar ícone
+      const icon = this.querySelector('i');
+      if (type === 'password') {
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      } else {
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      }
+    });
+  }
   
   // Prevenir submissão padrão do formulário
   loginForm.addEventListener('submit', function(e) {
