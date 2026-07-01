@@ -44,7 +44,7 @@
         <div class="modal-header">Menu</div>
         <div class="modal-body">
           <div class="menu-section">
-            <h3>Tipos de fotos</h3>
+            <h3>Categoria de fotos</h3>
             <div class="category-grid">
               <button class="category-btn" onclick="selectCategory('Paisagens')">
                 Paisagens
@@ -63,32 +63,22 @@
               </button>
             </div>
             <p id="selectedCategory" class="selection-text">
-              Selecione uma categoria
+              Mostrando: paisagens
             </p>
           </div>
 
           <ul>
             <li>
-              <button onclick="window.location.href='pages/sobre/Slider.html'">
-                <i class="fas fa-info-circle"></i> Sobre
+              <button id="settingsToggleBtn" onclick="toggleSettingsPanel()">
+                <i class="fas fa-cog"></i> Configurações
               </button>
             </li>
-            <li>
-              <button><i class="fas fa-search"></i>Pesquisar</button>
-            </li>
-            <li>
-              <button onclick="window.location.href='index.html'">
-                <i class="fas fa-image"></i> Imagem aleatória
-              </button>
-            </li>
-            <li>
-              <button onclick="window.location.href = 'login.html'">
-                <i class="fas fa-users"></i> Login
-              </button>
-            </li>
-            <li>
+            <li id="themeOptions" class="theme-options hidden">
               <button id="themeToggleBtn" onclick="toggleDarkTheme()">
-                <i class="fas fa-moon"></i> Configurações
+                <i class="fas fa-moon"></i> Tema escuro
+              </button>
+              <button id="themeLightBtn" onclick="setTheme('light')">
+                <i class="fas fa-sun"></i> Tema claro
               </button>
             </li>
           </ul>

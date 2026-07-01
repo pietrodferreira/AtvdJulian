@@ -14,33 +14,54 @@ function closeMoreModal() {
 
 function selectCategory(category) {
   const label = document.getElementById('selectedCategory');
+  const buttons = document.querySelectorAll('.category-btn');
+
+  buttons.forEach((button) => {
+    button.classList.toggle('active', button.textContent.trim() === category);
+  });
+
   if (label) {
-    label.textContent = `Categoria selecionada: ${category}`;
+    label.textContent = `Mostrando: ${category.toLowerCase()}`;
+  }
+}
+
+function toggleSettingsPanel() {
+  const panel = document.getElementById('themeOptions');
+  if (panel) {
+    panel.classList.toggle('hidden');
+  }
+}
+
+function setTheme(theme) {
+  const body = document.body;
+  const toggleButton = document.getElementById('themeToggleBtn');
+  const lightButton = document.getElementById('themeLightBtn');
+
+  body.classList.toggle('dark-theme', theme === 'dark');
+  localStorage.setItem('awphoto-theme', theme);
+
+  if (toggleButton && lightButton) {
+    toggleButton.innerHTML = theme === 'dark'
+      ? '<i class="fas fa-sun"></i> Tema claro'
+      : '<i class="fas fa-moon"></i> Tema escuro';
+    lightButton.innerHTML = theme === 'light'
+      ? '<i class="fas fa-sun"></i> Tema claro'
+      : '<i class="fas fa-moon"></i> Tema claro';
   }
 }
 
 function toggleDarkTheme() {
   const body = document.body;
-  const button = document.getElementById('themeToggleBtn');
-  const isDark = body.classList.toggle('dark-theme');
-
-  if (button) {
-    button.innerHTML = isDark
-      ? '<i class="fas fa-sun"></i> Tema claro'
-      : '<i class="fas fa-moon"></i> Configurações';
-  }
-
-  localStorage.setItem('awphoto-theme', isDark ? 'dark' : 'light');
+  const isDark = !body.classList.contains('dark-theme');
+  setTheme(isDark ? 'dark' : 'light');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('awphoto-theme');
   if (savedTheme === 'dark') {
-    document.body.classList.add('dark-theme');
-    const button = document.getElementById('themeToggleBtn');
-    if (button) {
-      button.innerHTML = '<i class="fas fa-sun"></i> Tema claro';
-    }
+    setTheme('dark');
+  } else {
+    setTheme('light');
   }
 });
 
