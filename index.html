@@ -21,17 +21,13 @@
             </form>
           </li>
           <li>
-            <a href="https://picsum.photos/1300/700" target="_blank">
-              <button>Aleatório</button>
-            </a>
+            <button onclick="window.location.href='index.html'">Aleatório</button>
           </li>
           <li>
-            <button id="moreBtn">Menu</button>
+            <button id="moreBtn" onclick="openMoreModal()">Menu</button>
           </li>
           <li>
-            <button onclick="window.location.href='pages/sobre/Slider.html'">
-              Sobre
-            </button>
+            <button onclick="window.location.href='sobre.html'">Sobre</button>
           </li>
           <li>
             <a href="login.html"><button>Entrar</button></a>
@@ -45,36 +41,42 @@
         <span class="close" onclick="closeMoreModal()">&times;</span>
         <div class="modal-header">Menu</div>
         <div class="modal-body">
+          <div class="menu-section">
+            <h3>Categoria de fotos</h3>
+            <div class="category-grid">
+              <button class="category-btn" onclick="selectCategory('Paisagens')">
+                Paisagens
+              </button>
+              <button class="category-btn" onclick="selectCategory('Animais')">
+                Animais
+              </button>
+              <button class="category-btn" onclick="selectCategory('Cidades')">
+                Cidades
+              </button>
+              <button class="category-btn" onclick="selectCategory('Interior')">
+                Interior
+              </button>
+              <button class="category-btn" onclick="selectCategory('Mar')">
+                Mar
+              </button>
+            </div>
+            <p id="selectedCategory" class="selection-text">
+              Mostrando: paisagens
+            </p>
+          </div>
+
           <ul>
             <li>
-              <button onclick="window.location.href='pages/sobre/Slider.html'">
-                <i class="fas fa-info-circle"></i> Sobre
+              <button id="settingsToggleBtn" onclick="toggleSettingsPanel()">
+                <i class="fas fa-cog"></i> Configurações
               </button>
             </li>
-            <li>
-              <button><i class="fas fa-search"></i>Pesquisar</button>
-            </li>
-            <li>
-              <button
-                onclick="window.location.href = 'https://picsum.photos/1300/700'"
-              >
-                <i class="fas fa-image"></i> Imagem aleatória
+            <li id="themeOptions" class="theme-options hidden">
+              <button id="themeToggleBtn" onclick="toggleDarkTheme()">
+                <i class="fas fa-moon"></i> Tema escuro
               </button>
-            </li>
-            <li>
-              <button onclick="window.location.href = 'login.html'">
-                <i class="fas fa-users"></i> Login
-              </button>
-            </li>
-            <li>
-              <button><i class="fas fa-sliders-h"></i> Avançado</button>
-            </li>
-            <li>
-              <button onclick="window.location.href='pages/config/tela de config.css.html'"><i class="fas fa-cogs"></i> Configurações</button>
-            </li>
-            <li>
-              <button onclick="window.location.href='pages/prices/prices.html'">
-                <i class="fa-solid fa-crown"></i> Premium
+              <button id="themeLightBtn" onclick="setTheme('light')">
+                <i class="fas fa-sun"></i> Tema claro
               </button>
             </li>
           </ul>
